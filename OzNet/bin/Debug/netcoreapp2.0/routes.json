@@ -1,0 +1,21 @@
+﻿{
+  "routes": [
+    {
+      "endpoint": "/movies",
+      "destination": {
+        "path": "http://localhost:8090/movies/",
+        "requiresAuthentication": "false"
+      }
+    },
+    {
+      "endpoint": "/songs",
+      "destination": {
+        "path": "http://localhost:8092/shows/",
+        "requiresAuthentication": "false"
+      }
+    }
+  ],
+  "authenticationService": {
+    "path": "http://localhost:8080/api/auth/"
+  }
+}
