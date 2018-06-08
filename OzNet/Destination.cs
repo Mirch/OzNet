@@ -44,6 +44,7 @@ namespace OzNet
 
             HttpClient client = new HttpClient();
             HttpRequestMessage newRequest = new HttpRequestMessage(new HttpMethod(request.Method), CreateDestinationUri(request));
+            newRequest.Content = new StringContent(requestContent, Encoding.UTF8, request.ContentType);
             HttpResponseMessage response = await client.SendAsync(newRequest);
 
             return response;
