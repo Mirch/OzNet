@@ -11,12 +11,12 @@ namespace OzNet
 {
     public class Destination
     {
-        public string Uri { get; set; }
+        public string Path { get; set; }
         public bool RequiresAuthentication { get; set; }
         static HttpClient client = new HttpClient();
         public Destination(string uri, bool requiresAuthentication)
         {
-            Uri = uri;
+            Path = uri;
             RequiresAuthentication = requiresAuthentication;
         }
 
@@ -27,7 +27,7 @@ namespace OzNet
 
         private Destination()
         {
-            Uri = "/";
+            Path = "/";
             RequiresAuthentication = false;
         }
 
@@ -57,9 +57,14 @@ namespace OzNet
             string requestPath = request.Path.ToString();
             string queryString = request.QueryString.ToString();
 
-            string endpoint = requestPath.Substring(1).Split('/')[1];
+            string endpoint = "";
+            string[] endpointSplit = requestPath.Substring(1).Split('/');
 
-            return Uri + endpoint + queryString;
+            if (endpointSplit.Length > 1)
+                endpoint = endpointSplit[1];
+
+
+            return Path + endpoint + queryString;
         }
 
     }
